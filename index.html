@@ -399,7 +399,7 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
     <h1>Floating Solar India — Transformer Oil Intelligence</h1>
     <p>Inverter Duty Transformer (IDT) &nbsp;|&nbsp; Initial Fill Volume &nbsp;|&nbsp; Confidential Internal Report</p>
   </div>
-  <div class="badge">May 2026</div>
+  <div class="badge">August 2026</div>
 
   <button class="fs-btn" id="fs-btn" onclick="toggleFS()">
     <svg id="fs-icon-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -414,15 +414,15 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 <div class="kpi-row">
   <div class="kpi card k1">
     <div class="ki">Total Projects</div>
-    <div class="kv cnt" data-t="50">0</div>
+    <div class="kv cnt" data-t="54" id="k1v">0</div>
     <div class="kl">FSPV Projects — India</div>
-    <div class="ks">21 Commissioned · 16 Execution · 13 Pipeline</div>
+    <div class="ks" id="k1s">21 Commissioned · 16 Execution · 13 Pipeline</div>
   </div>
   <div class="kpi card k2">
     <div class="ki">Total Capacity</div>
-    <div class="kv cnt" data-t="5348">0</div>
+    <div class="kv cnt" data-t="7473" id="k2v">0</div>
     <div class="kl">MW Installed + Pipeline</div>
-    <div class="ks">2,703 MW future pipeline alone</div>
+    <div class="ks" id="k2s">2,703 MW future pipeline alone</div>
   </div>
   <div class="kpi card k3">
     <div class="ki">Oil TAM — Initial Fill</div>
@@ -432,9 +432,9 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
   </div>
   <div class="kpi card k4">
     <div class="ki">SE Confirmed TAM</div>
-    <div class="kv cnt" data-t="2838">0</div>
+    <div class="kv cnt" data-t="4440" id="k4v">0</div>
     <div class="kl">KL — Synthetic Ester Mandatory</div>
-    <div class="ks">473 IDTs · Sep'25+ Mandate</div>
+    <div class="ks" id="k4s">473 IDTs · Sep'25+ Mandate</div>
   </div>
 </div>
 
@@ -464,9 +464,9 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 <!-- TABS -->
 <div class="tab-nav">
   <button class="tab-btn act" onclick="sw('ov',this)">Overview <span class="tc">Summary</span></button>
-  <button class="tab-btn" onclick="sw('co',this)">Commissioned <span class="tc">21</span></button>
-  <button class="tab-btn" onclick="sw('ex',this)">Execution & Awarded <span class="tc">16</span></button>
-  <button class="tab-btn" onclick="sw('pi',this)">Future Pipeline <span class="tc">13</span></button>
+  <button class="tab-btn" onclick="sw('co',this)">Commissioned <span class="tc" id="co-tab-badge">21</span></button>
+  <button class="tab-btn" onclick="sw('ex',this)">Execution & Awarded <span class="tc" id="ex-tab-badge">16</span></button>
+  <button class="tab-btn" onclick="sw('pi',this)">Future Pipeline <span class="tc" id="pi-tab-badge">13</span></button>
   <button class="tab-btn" onclick="sw('st',this)">State-wise <span class="tc">Exec+Pipe</span></button>
   <button class="tab-btn" onclick="sw('tf',this)">Time Frame & Targets <span class="tc">Strategy</span></button>
 </div>
@@ -487,12 +487,12 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
     <div class="card">
       <div class="ctitle">SE Mandate Coverage by MW</div>
       <div class="bc">
-        <div class="br"><div class="blbl tc3">SE Mandatory Only</div><div class="btr"><div class="bf se" style="width:69.4%">3,711 MW</div></div></div>
-        <div class="br"><div class="blbl tc2">NE or SE (Choice)</div><div class="btr"><div class="bf ne" style="width:30.6%">1,637 MW</div></div></div>
+        <div class="br"><div class="blbl tc3">SE Mandatory Only</div><div class="btr"><div class="bf se" style="width:69.4%" id="se-mandate-bar">3,711 MW</div></div></div>
+        <div class="br"><div class="blbl tc2">NE or SE (Choice)</div><div class="btr"><div class="bf ne" style="width:30.6%" id="se-choice-bar">1,637 MW</div></div></div>
       </div>
       <div style="display:flex;gap:12px;margin-top:24px;">
         <div style="flex:1; padding:16px; background:var(--c3d); border-radius:8px;">
-          <div style="font-size:24px; font-weight:700; color:var(--c3);">69.4%</div>
+          <div style="font-size:24px; font-weight:700; color:var(--c3);" id="se-mandate-pct">69.4%</div>
           <div style="font-size:12px; color:var(--txd); margin-top:4px;">MW with SE Mandate</div>
         </div>
         <div style="flex:1; padding:16px; background:var(--c1d); border-radius:8px;">
@@ -506,12 +506,12 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 
 <!-- TAB: COMMISSIONED -->
 <div class="tab-panel" id="tab-co">
-  <div class="sec-hd"><h2>Commissioned (21 Projects | 825 MW)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
+  <div class="sec-hd"><h2>Commissioned (<span id="co-title-proj-count">21</span> Projects | <span id="co-title-cap">825 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
   <div class="ibox">All 21 projects tendered before September 2025. Mandate was Bidder's Choice: Natural Ester OR Synthetic Ester. Volumes = initial fill only.</div>
   <div class="sbar">
-    <div class="si"><div class="sv tc1">21</div><div class="sl">Projects</div></div>
-    <div class="si"><div class="sv tc1">825 MW</div><div class="sl">Total Capacity</div></div>
-    <div class="si"><div class="sv tc1">115</div><div class="sl">Total IDTs</div></div>
+    <div class="si"><div class="sv tc1" id="co-proj-count">21</div><div class="sl">Projects</div></div>
+    <div class="si"><div class="sv tc1" id="co-cap">825 MW</div><div class="sl">Total Capacity</div></div>
+    <div class="si"><div class="sv tc1" id="co-idts">115</div><div class="sl">Total IDTs</div></div>
     <div class="si"><div class="sv tc3" id="co-vol">522 KL</div><div class="sl">Vol ≥50 MW</div></div>
     <div class="si"><div class="sv tc3" id="co-rev">₹25.1 Cr</div><div class="sl">Revenue</div></div>
   </div>
@@ -522,11 +522,11 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 
 <!-- TAB: EXECUTION -->
 <div class="tab-panel" id="tab-ex">
-  <div class="sec-hd"><h2>Under Execution & Awarded (16 Projects | 1,820 MW)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
+  <div class="sec-hd"><h2>Under Execution & Awarded (<span id="ex-title-proj-count">16</span> Projects | <span id="ex-title-cap">1,820 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
   <div class="gbox">9 of 16 projects (Sep 2025+ tenders) mandate Synthetic Ester ONLY. SOTL target: all 16 for SE supply.</div>
   <div class="sbar">
-    <div class="si"><div class="sv tc2">16</div><div class="sl">Projects</div></div>
-    <div class="si"><div class="sv tc2">1,820 MW</div><div class="sl">Total Capacity</div></div>
+    <div class="si"><div class="sv tc2" id="ex-proj-count">16</div><div class="sl">Projects</div></div>
+    <div class="si"><div class="sv tc2" id="ex-cap">1,820 MW</div><div class="sl">Total Capacity</div></div>
     <div class="si"><div class="sv tc3" id="ex-se">780 KL</div><div class="sl">SE Mandatory Vol</div></div>
     <div class="si"><div class="sv tc2" id="ex-vol">1,302 KL</div><div class="sl">Vol ≥50 MW</div></div>
     <div class="si"><div class="sv tc3" id="ex-rev">₹62.5 Cr</div><div class="sl">Revenue</div></div>
@@ -538,11 +538,11 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 
 <!-- TAB: PIPELINE -->
 <div class="tab-panel" id="tab-pi">
-  <div class="sec-hd"><h2>Future Pipeline (13 Projects | 2,703 MW)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
+  <div class="sec-hd"><h2>Future Pipeline (<span id="pi-title-proj-count">13</span> Projects | <span id="pi-title-cap">2,703 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
   <div class="gbox">100% of future pipeline projects mandate Synthetic Ester ONLY. Sep 2025+ SECI/NTPC/PSU specs apply universally.</div>
   <div class="sbar">
-    <div class="si"><div class="sv tc4">13</div><div class="sl">Projects</div></div>
-    <div class="si"><div class="sv tc4">2,703 MW</div><div class="sl">Total Capacity</div></div>
+    <div class="si"><div class="sv tc4" id="pi-proj-count">13</div><div class="sl">Projects</div></div>
+    <div class="si"><div class="sv tc4" id="pi-cap">2,703 MW</div><div class="sl">Total Capacity</div></div>
     <div class="si"><div class="sv tc3" id="pi-vol">2,046 KL</div><div class="sl">Vol ≥50 MW</div></div>
     <div class="si"><div class="sv tc1">2026–30</div><div class="sl">NIT Window</div></div>
     <div class="si"><div class="sv tc3" id="pi-rev">₹98.2 Cr</div><div class="sl">Revenue</div></div>
@@ -641,10 +641,10 @@ var execP=[
   {id:1,n:"DVC/GVREL Tilaiya FSPV (155 MW)",dev:"GVREL (DVC+NTPC JV)",epc:"Sterling & Wilson Renewable Energy Ltd",st:"Jharkhand",mw:155,loa:"Jan 2024 (PPA JSERC)",cod:"Dec 2026",i:20,m:"ne_se"},
   {id:2,n:"DVC/GVREL Panchet FSPV (105 MW)+50 MW GM",dev:"GVREL (DVC+NTPC JV)",epc:"L&T Construction (75 MW) + NGSL (30 MW+50 MW GM)",st:"Jharkhand/WB",mw:105,loa:"2023–24 (LOA)",cod:"Dec 2026",i:14,m:"ne_se"},
   {id:3,n:"DVC Maithon FSPV (234 MW) — LOA Awarded",dev:"DVC",epc:"TrueRE Oriana Power Ltd (EPC+10-yr O&M; ₹1,180.53 Cr)",st:"Jharkhand",mw:234,loa:"Mar 2026 (PO Issued)",cod:"Sep 2027",i:30,m:"se_only"},
-  {id:4,n:"DVC Konar FSPV (228 MW) — L&T L1 Bidder",dev:"DVC",epc:"L&T Construction (L1 at ₹11,261 Mn; LOA expected 2026)",st:"Jharkhand",mw:228,loa:"Oct 2025 (Bid opened)",cod:"Oct 2027",i:29,m:"se_only"},
+  {id:4,n:"DVC Konar FSPV (228 MW) — L&T Awarded (L1)",dev:"DVC",epc:"L&T Construction (L1 at ₹11,261 Mn; LOA expected 2026)",st:"Jharkhand",mw:228,loa:"Oct 2025 (Bid opened)",cod:"Oct 2027",i:29,m:"se_only"},
   {id:5,n:"DVC CTPS Chandrapura FSPV (10 MW)",dev:"DVC",epc:"Under award (bid opened Nov 2024)",st:"Jharkhand",mw:10,loa:"Nov 2024 (Bid opened)",cod:"Dec 2026",i:2,m:"ne_se"},
   {id:6,n:"DVC Mejia TPS FSPV (14 MW)",dev:"DVC",epc:"Gensol Engineering Ltd",st:"West Bengal",mw:14,loa:"2024 (LOA)",cod:"2026",i:2,m:"ne_se"},
-  {id:7,n:"NHPC West Kallada FSPV (50 MW)",dev:"NHPC Ltd",epc:"Apollo Green Energy Ltd (EPC) — Foundation stone laid by PM Modi 11 Mar 2026; Construction active",st:"Kerala",mw:50,loa:"Apr 2025 (PPA signed)",cod:"Dec 2026",i:7,m:"ne_se"},
+  {id:7,n:"NHPC West Kallada FSPV (50 MW)",dev:"NHPC Ltd",epc:"Apollo Green Energy Ltd (EPC) — Foundation stone laid by PM Modi 11 Mar 2026; Construction active",st:"Kerala",mw:50,loa:"Apr 2025 (PPA signed)",cod:"Mar 2027",i:7,m:"ne_se"},
   {id:8,n:"NHPC Rengali FSPV Phase-1 (100 MW)",dev:"NHPC Ltd",epc:"BHEL (EPC+O&M 5 yr); Bathymetry survey done Feb 2024; PCU sub-tender Mar 2024; Pre-construction stage",st:"Odisha",mw:100,loa:"2023 (NIT); BHEL Sub-tenders 2024",cod:"2027 (revised)",i:13,m:"ne_se"},
   {id:9,n:"NTPC North Karanpura FSPV+BESS (56 MW+240 MWh)",dev:"NTPC Ltd",epc:"Under LOA (EPC awarded Jun-Jul 2025)",st:"Jharkhand",mw:56,loa:"Oct 2023 (NIT)",cod:"2026–27",i:7,m:"ne_se"},
   {id:10,n:"Omkareshwar FSPV Phase-2 (322 MW balance)",dev:"REWA / MPPTCL",epc:"TBD (Phase-2 EPC under award)",st:"Madhya Pradesh",mw:322,loa:"2024–25",cod:"2026–27",i:41,m:"ne_se"},
@@ -720,13 +720,85 @@ function renderAll(){
   var ck=totKL(commP), ek=totKL(execP), pk=totKL(pipeP), tot=ck+ek+pk;
   var esek=inc(execP).filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+vol(p.i);},0);
 
+  // Compute metrics dynamically
+  var commCount = commP.length;
+  var execCount = execP.length;
+  var pipeCount = pipeP.length;
+  var totalProjCount = commCount + execCount + pipeCount;
+
+  var commCap = commP.reduce(function(sum,p){return sum+p.mw;},0);
+  var execCap = execP.reduce(function(sum,p){return sum+p.mw;},0);
+  var pipeCap = pipeP.reduce(function(sum,p){return sum+p.mw;},0);
+  var totalCap = commCap + execCap + pipeCap;
+
+  var commIDTs = commP.reduce(function(sum,p){return sum+p.i;},0);
+  var execIDTs = execP.reduce(function(sum,p){return sum+p.i;},0);
+  var pipeIDTs = pipeP.reduce(function(sum,p){return sum+p.i;},0);
+  var totalIDTsVal = commIDTs + execIDTs + pipeIDTs;
+
+  var commIDTs50 = inc(commP).reduce(function(sum,p){return sum+p.i;},0);
+  var execIDTs50 = inc(execP).reduce(function(sum,p){return sum+p.i;},0);
+  var pipeIDTs50 = inc(pipeP).reduce(function(sum,p){return sum+p.i;},0);
+  var totalIDTs50 = commIDTs50 + execIDTs50 + pipeIDTs50;
+
+  // SE Mandate Coverage
+  var seMandateCap = execP.filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+p.mw;},0) + pipeCap;
+  var seMandatePct = (seMandateCap / totalCap * 100).toFixed(1);
+  var seChoiceCap = totalCap - seMandateCap;
+  var seChoicePct = (seChoiceCap / totalCap * 100).toFixed(1);
+
+  // — Dynamic Tab Badges
+  tx('co-tab-badge', commCount);
+  tx('ex-tab-badge', execCount);
+  tx('pi-tab-badge', pipeCount);
+
+  // — Dynamic tab header stats
+  tx('co-title-proj-count', commCount);
+  tx('co-title-cap', Math.round(commCap).toLocaleString() + ' MW');
+  tx('ex-title-proj-count', execCount);
+  tx('ex-title-cap', Math.round(execCap).toLocaleString() + ' MW');
+  tx('pi-title-proj-count', pipeCount);
+  tx('pi-title-cap', Math.round(pipeCap).toLocaleString() + ' MW');
+
+  // — Dynamic sbar items
+  tx('co-proj-count', commCount);
+  tx('co-cap', Math.round(commCap).toLocaleString() + ' MW');
+  tx('co-idts', commIDTs);
+  tx('ex-proj-count', execCount);
+  tx('ex-cap', Math.round(execCap).toLocaleString() + ' MW');
+  tx('pi-proj-count', pipeCount);
+  tx('pi-cap', Math.round(pipeCap).toLocaleString() + ' MW');
+
+  // — Dynamic SE Mandate Coverage card
+  var smBar = g('se-mandate-bar');
+  if(smBar) {
+    smBar.style.width = seMandatePct + '%';
+    smBar.textContent = Math.round(seMandateCap).toLocaleString() + ' MW';
+  }
+  var scBar = g('se-choice-bar');
+  if(scBar) {
+    scBar.style.width = seChoicePct + '%';
+    scBar.textContent = Math.round(seChoiceCap).toLocaleString() + ' MW';
+  }
+  tx('se-mandate-pct', seMandatePct + '%');
+
+  // — Dynamic KPI updates
+  tx('k1v', totalProjCount);
+  tx('k1s', commCount + ' Commissioned \u00B7 ' + execCount + ' Execution \u00B7 ' + pipeCount + ' Pipeline');
+  tx('k2v', Math.round(totalCap).toLocaleString());
+  tx('k2s', Math.round(pipeCap).toLocaleString() + ' MW future pipeline alone');
+  
   // — Global revenue display
   tx('ob-rv','\u20B9'+rc(tot)+' Cr');
 
   // — KPI 3 (TAM)
   tx('k3v',tot.toLocaleString());
-  tx('k3s','645 IDTs \u00B7 6 KL/IDT \u00B7 '+lbl+' \u00B7 Initial Fill');
-  tx('k3t',lbl+' \u00B7 \u20B9'+PRICE+'/L');
+  tx('k3s', totalIDTs50 + ' IDTs \u00B7 6 KL/IDT \u00B7 '+lbl+' \u00B7 Initial Fill');
+
+  // — KPI 4 (Confirmed SE TAM)
+  var confirmedSEIDTs = execP.filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+p.i;},0) + pipeIDTs;
+  tx('k4v', (confirmedSEIDTs * KL).toLocaleString());
+  tx('k4s', confirmedSEIDTs + ' IDTs \u00B7 Sep\'25+ Mandate');
 
   // — Table column headers
   ['co-vh','ex-vh','pi-vh'].forEach(function(id){
@@ -735,8 +807,8 @@ function renderAll(){
 
   // — Table footer text
   tx('co-ft','Oil: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial Fill Only \u00B7 Pre-Sep 2025 Mandate');
-  tx('ex-ft','Oil: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial Fill Only \u00B7 Sep\u201925+ SE Mandatory: 9 Projects');
-  tx('pi-ft','Oil: '+lbl+' \u00B7 All 13 Projects Sep\u201925+ Mandate \u00B7 Initial Fill Only');
+  tx('ex-ft','Oil: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial Fill Only \u00B7 Sep\u201925+ SE Mandatory: ' + execP.filter(function(p){return p.m==='se_only';}).length + ' Projects');
+  tx('pi-ft','Oil: '+lbl+' \u00B7 All ' + pipeCount + ' Projects Sep\u201925+ Mandate \u00B7 Initial Fill Only');
 
   // — Chart titles
   tx('co-ct','Initial Fill Volume ('+lbl+') \u2014 Commissioned \u226550 MW');
@@ -751,8 +823,8 @@ function renderAll(){
   // — Overview volume boxes
   tx('ov-c',ck+' KL'); tx('ov-e',ek+' KL'); tx('ov-p',pk+' KL'); tx('ov-t',tot+' KL');
   tx('ov-note','Oil Type: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial fill only \u2014 no top-up included in any calculation');
-  tx('ob1',ck+' KL \u00B7 87 IDTs'); tx('ob2',ek+' KL \u00B7 217 IDTs');
-  tx('ob3',pk+' KL \u00B7 341 IDTs'); tx('ob4',tot+' KL \u00B7 645 IDTs');
+  tx('ob1',ck+' KL \u00B7 ' + commIDTs50 + ' IDTs'); tx('ob2',ek+' KL \u00B7 ' + execIDTs50 + ' IDTs');
+  tx('ob3',pk+' KL \u00B7 ' + pipeIDTs50 + ' IDTs'); tx('ob4',tot+' KL \u00B7 ' + totalIDTs50 + ' IDTs');
 
   // — Revenue bars (overview)
   var cr=parseFloat(rc(ck)),er=parseFloat(rc(ek)),pr=parseFloat(rc(pk)),mx=Math.max(cr,er,pr);
@@ -828,27 +900,32 @@ function rChart(id,arr,oc){
 // GANTT
 // ============================================================
 function rGantt(){
-  var s=new Date('2024-01-01'),e=new Date('2029-12-31'),tot=e-s,now=new Date('2026-05-24');
+  var s=new Date('2024-01-01'),e=new Date('2030-06-30'),tot=e-s,now=new Date('2026-08-28');
   var np=((now-s)/tot*100).toFixed(1);
   function p(d){return Math.max(0,Math.min(100,((new Date(d)-s)/tot*100))).toFixed(1);}
   var gd=[
     {cat:'ex',n:'DVC Maithon 234 MW',sub:'PO: Mar 2026',a:'2026-03-01',c:'2027-09-01',s0:'2027-03-01',s1:'2027-09-01',v:180},
-    {cat:'ex',n:'DVC Konar 228 MW',sub:'LOA: Q3 2026',a:'2026-07-01',c:'2027-10-01',s0:'2027-07-01',s1:'2028-01-01',v:174},
-    {cat:'ex',n:'DVC Tilaiya Add. 445 MW',sub:'NIT: 2025-26',a:'2026-06-01',c:'2028-03-01',s0:'2027-06-01',s1:'2027-12-01',v:336},
-    {cat:'ex',n:'Omkareshwar Ph-2 322 MW',sub:'EPC Award 2024-25',a:'2024-09-01',c:'2026-09-01',s0:'2025-09-01',s1:'2026-03-01',v:246},
+    {cat:'ex',n:'DVC Konar 228 MW',sub:'LOA Expected 2026',a:'2026-07-01',c:'2027-10-01',s0:'2027-07-01',s1:'2028-01-01',v:174},
+    {cat:'ex',n:'DVC Tilaiya Add. 445 MW',sub:'Under Tendering',a:'2026-06-01',c:'2028-03-01',s0:'2027-06-01',s1:'2027-12-01',v:336},
+    {cat:'ex',n:'Omkareshwar Ph-2 322 MW',sub:'Awarded 2024–25',a:'2024-09-01',c:'2027-03-01',s0:'2026-03-01',s1:'2026-09-01',v:246},
     {cat:'ex',n:'GVREL Tilaiya 155 MW',sub:'LOA: Jan 2024',a:'2024-01-01',c:'2026-12-01',s0:'2025-01-01',s1:'2025-07-01',v:120},
-    {cat:'ex',n:'GVREL Panchet 105 MW',sub:'LOA: 2023-24',a:'2023-10-01',c:'2026-12-01',s0:'2024-10-01',s1:'2025-04-01',v:84},
-    {cat:'ex',n:'NHPC Rengali Ph-1 100 MW',sub:'LOA: 2023',a:'2023-06-01',c:'2026-06-01',s0:'2024-06-01',s1:'2024-12-01',v:78},
-    {cat:'ex',n:'NTPC N.Karanpura 56 MW',sub:'LOA: Jun-Jul 2025',a:'2025-06-01',c:'2026-09-01',s0:'2026-06-01',s1:'2026-12-01',v:42},
-    {cat:'ex',n:'NHPC West Kallada 50 MW',sub:'PPA: Apr 2025',a:'2025-04-01',c:'2026-12-01',s0:'2026-04-01',s1:'2026-10-01',v:42},
-    {cat:'pi',n:'UPNEDA 37 Res. 1,155 MW',sub:'NIT: May 2026',a:'2026-12-01',c:'2030-06-01',s0:'2027-12-01',s1:'2028-06-01',v:870},
-    {cat:'pi',n:'DVC Maithon Ph-2 350 MW',sub:'NIT: 2026-27',a:'2027-03-01',c:'2029-06-01',s0:'2028-03-01',s1:'2028-09-01',v:264},
-    {cat:'pi',n:'NTPC Vindhyachal 228 MW',sub:'NIT: 2026-27',a:'2027-03-01',c:'2029-06-01',s0:'2028-03-01',s1:'2028-09-01',v:174},
-    {cat:'pi',n:'NHPC Rengali Ph-2 200 MW',sub:'NIT: 2026-27',a:'2027-06-01',c:'2028-06-01',s0:'2028-06-01',s1:'2028-12-01',v:150},
-    {cat:'pi',n:'THDC Godavari 200 MW',sub:'MoU -> NIT 2026',a:'2026-09-01',c:'2028-06-01',s0:'2027-09-01',s1:'2028-03-01',v:150},
+    {cat:'ex',n:'GVREL Panchet 105 MW',sub:'LOA: 2023–24',a:'2023-10-01',c:'2026-12-01',s0:'2024-10-01',s1:'2025-04-01',v:84},
+    {cat:'ex',n:'NHPC Rengali Ph-1 100 MW',sub:'LOA: 2023',a:'2023-06-01',c:'2027-06-01',s0:'2026-06-01',s1:'2026-12-01',v:78},
+    {cat:'ex',n:'NTPC N.Karanpura 56 MW',sub:'LOA: Jun–Jul 2025',a:'2025-06-01',c:'2026-09-01',s0:'2026-06-01',s1:'2026-12-01',v:42},
+    {cat:'ex',n:'NHPC West Kallada 50 MW',sub:'PPA: Apr 2025',a:'2025-04-01',c:'2027-03-01',s0:'2026-06-01',s1:'2026-12-01',v:42},
+    {cat:'pi',n:'UPNEDA 37 Res. 1,155 MW',sub:'Applications May 2026',a:'2026-12-01',c:'2030-06-01',s0:'2027-12-01',s1:'2028-06-01',v:870},
+    {cat:'pi',n:'GRIDCO Odisha State 1000 MW',sub:'NIT: 2026-27 (phased)',a:'2027-06-01',c:'2030-06-01',s0:'2029-06-01',s1:'2029-12-01',v:750},
+    {cat:'pi',n:'GRIDCO Rengali Sec-B 500 MW',sub:'Pre-Bid: Jun 2026',a:'2026-06-01',c:'2028-03-01',s0:'2027-06-01',s1:'2027-12-01',v:378},
+    {cat:'pi',n:'GEDCOL/NHPC JV 400 MW',sub:'NIT: 2026-27',a:'2027-06-01',c:'2029-12-01',s0:'2028-12-01',s1:'2029-06-01',v:300},
+    {cat:'pi',n:'DVC Maithon Ph-2 350 MW',sub:'NIT: 2026–27',a:'2027-03-01',c:'2029-06-01',s0:'2028-03-01',s1:'2028-09-01',v:264},
+    {cat:'pi',n:'GRIDCO Upper Indravati 225 MW',sub:'ESIA: Jun 2026',a:'2026-06-01',c:'2028-03-01',s0:'2027-06-01',s1:'2027-12-01',v:174},
+    {cat:'pi',n:'NTPC Vindhyachal 228 MW',sub:'NIT: 2026–27',a:'2027-03-01',c:'2029-06-01',s0:'2028-03-01',s1:'2028-09-01',v:174},
+    {cat:'pi',n:'NHPC Rengali Ph-2 200 MW',sub:'NIT: 2026–27',a:'2027-06-01',c:'2028-06-01',s0:'2028-06-01',s1:'2028-12-01',v:150},
+    {cat:'pi',n:'THDC Godavari 200 MW',sub:'NIT: 2026',a:'2026-09-01',c:'2028-06-01',s0:'2027-09-01',s1:'2028-03-01',v:150},
+    {cat:'pi',n:'NLC India Pit-Lake 100 MW',sub:'NIT: 2026 (EoI)',a:'2026-09-01',c:'2028-06-01',s0:'2027-09-01',s1:'2028-03-01',v:78},
     {cat:'pi',n:'SECI Rihand Balance 100 MW',sub:'NIT: 2026',a:'2026-07-01',c:'2027-06-01',s0:'2027-07-01',s1:'2028-01-01',v:78}
   ];
-  var yrs=['2024','2025','2026','2027','2028','2029'];
+  var yrs=['2024','2025','2026','2027','2028','2029','2030'];
   var h='<div class="ghd">'+yrs.map(function(y){return '<div class="gyr">'+y+'</div>';}).join('')+'</div>';
   function sec(title,col,bg,items){
     h+='<div class="gsec"><div class="gst" style="background:'+bg+';color:'+col+';border:1px solid '+col+'28">'+title+'</div>';
@@ -887,17 +964,36 @@ function rTargets(){
     '<div class="dm"><span class="dtag">'+d.cnt+' Proj</span><span class="dtag a">'+d.mw.toLocaleString()+' MW</span><span class="dtag g">'+d.k+' KL</span></div></div>'+
     '<div class="dvol">'+d.k+' KL<small>\u20B9'+rc(d.k)+' Cr</small></div></div>';
   }).join(''));
-  var ep=[
-    {n:"L&T Construction",mw:655,k:504},{n:"Oriana Power / TrueRE",mw:234,k:180},
-    {n:"BHEL",mw:490,k:384},{n:"Sterling & Wilson RE",mw:170,k:132},
-    {n:"Tata Power Solar",mw:100,k:78},{n:"Apollo Green Energy",mw:50,k:42},
-    {n:"ReNew Power EPC",mw:50,k:42},{n:"Gensol Engineering",mw:14,k:12}
-  ].sort(function(a,b){return b.k-a.k;});
+  
+  // Dynamic EPC Aggregation
+  var epcMap={};
+  var allEPC = commP.concat(execP).filter(function(p){return p.mw>=50;});
+  allEPC.forEach(function(p){
+    var norm = '';
+    var s = (p.epc || '').toLowerCase();
+    if (s.indexOf('l&t')>=0 || s.indexOf('larsen')>=0 || s.indexOf('l & t')>=0) norm = 'L&T Construction';
+    else if (s.indexOf('bhel')>=0 || s.indexOf('bharat heavy')>=0) norm = 'BHEL';
+    else if (s.indexOf('tata power')>=0) norm = 'Tata Power Solar';
+    else if (s.indexOf('sterling')>=0 || s.indexOf('s&w')>=0 || s.indexOf('sterling and wilson')>=0) norm = 'Sterling & Wilson RE';
+    else if (s.indexOf('oriana')>=0 || s.indexOf('truere')>=0) norm = 'Oriana Power / TrueRE';
+    else if (s.indexOf('apollo')>=0) norm = 'Apollo Green Energy';
+    else if (s.indexOf('renew')>=0) norm = 'ReNew Power EPC';
+    else if (s.indexOf('gensol')>=0) norm = 'Gensol Engineering';
+    else if (s.indexOf('vikram')>=0) norm = 'Vikram Solar';
+    
+    if(norm) {
+      if(!epcMap[norm]) epcMap[norm] = {n:norm, mw:0, k:0};
+      epcMap[norm].mw += p.mw;
+      epcMap[norm].k += vol(p.i);
+    }
+  });
+  var ep = Object.values(epcMap).sort(function(a,b){return b.k-a.k;});
   ih('epc-cards',ep.map(function(e,i){
-    return '<div class="dcard"><div class="dr '+RC[i]+'">'+(i+1)+'</div>'+
+    var rCls = i < RC.length ? RC[i] : 'rn';
+    return '<div class="dcard"><div class="dr '+rCls+'">'+(i+1)+'</div>'+
     '<div style="flex:1;min-width:0"><div class="dn">'+e.n+'</div>'+
-    '<div class="dm"><span class="dtag a">'+e.mw+' MW</span><span class="dtag g">'+e.k+' KL</span></div></div>'+
-    '<div class="dvol">'+e.k+' KL<small>\u20B9'+rc(e.k)+' Cr</small></div></div>';
+    '<div class="dm"><span class="dtag a">'+e.mw.toLocaleString()+' MW</span><span class="dtag g">'+e.k.toLocaleString()+' KL</span></div></div>'+
+    '<div class="dvol">'+e.k.toLocaleString()+' KL<small>\u20B9'+rc(e.k)+' Cr</small></div></div>';
   }).join(''));
 }
 
