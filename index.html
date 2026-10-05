@@ -414,13 +414,13 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 <div class="kpi-row">
   <div class="kpi card k1">
     <div class="ki">Total Projects</div>
-    <div class="kv cnt" data-t="54" id="k1v">0</div>
+    <div class="kv cnt" data-t="58" id="k1v">0</div>
     <div class="kl">FSPV Projects — India</div>
     <div class="ks" id="k1s">21 Commissioned · 16 Execution · 13 Pipeline</div>
   </div>
   <div class="kpi card k2">
     <div class="ki">Total Capacity</div>
-    <div class="kv cnt" data-t="7473" id="k2v">0</div>
+    <div class="kv cnt" data-t="8081" id="k2v">0</div>
     <div class="kl">MW Installed + Pipeline</div>
     <div class="ks" id="k2s">2,703 MW future pipeline alone</div>
   </div>
@@ -432,7 +432,7 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
   </div>
   <div class="kpi card k4">
     <div class="ki">SE Confirmed TAM</div>
-    <div class="kv cnt" data-t="4440" id="k4v">0</div>
+    <div class="kv cnt" data-t="4908" id="k4v">0</div>
     <div class="kl">KL — Synthetic Ester Mandatory</div>
     <div class="ks" id="k4s">473 IDTs · Sep'25+ Mandate</div>
   </div>
@@ -649,9 +649,9 @@ var execP=[
   {id:9,n:"NTPC North Karanpura FSPV+BESS (56 MW+240 MWh)",dev:"NTPC Ltd",epc:"Under LOA (EPC awarded Jun-Jul 2025)",st:"Jharkhand",mw:56,loa:"Oct 2023 (NIT)",cod:"2026–27",i:7,m:"ne_se"},
   {id:10,n:"Omkareshwar FSPV Phase-2 (322 MW balance)",dev:"REWA / MPPTCL",epc:"TBD (Phase-2 EPC under award)",st:"Madhya Pradesh",mw:322,loa:"2024–25",cod:"2026–27",i:41,m:"ne_se"},
   {id:11,n:"APGCL Sonbeel FSPV (20 MW)",dev:"APGCL / Assam",epc:"PMC appointed; EPC tender under process",st:"Assam",mw:20,loa:"2025 (Sep 2025+)",cod:"2026",i:3,m:"se_only"},
-  {id:12,n:"Coal India Chilwa Taal FSPV (20 MW)",dev:"Coal India Ltd / CMPDI",epc:"Under award (EPC bid Jan 2026)",st:"Jharkhand",mw:20,loa:"Jan 2026 (Bid)",cod:"2026–27",i:3,m:"se_only"},
+  {id:12,n:"Coal India Chilwa Taal FSPV (20 MW)",dev:"Coal India Ltd",epc:"Northern Express Infradevelopers Pvt Ltd (~₹115 Cr; selected from 25 bidders)",st:"Uttar Pradesh",mw:20,loa:"Dec 2025 (NIT); Contract awarded 25 May 2026",cod:"2026–27",i:3,m:"se_only"},
   {id:13,n:"NGEL–CSPGCL FSPV+BESS (6 MW+6MW/24 MWh)",dev:"NTPC Green+CSPGCL JV",epc:"TBD (EPC bid closed Mar 2026)",st:"Chhattisgarh",mw:6,loa:"Dec 2025 (IFB)",cod:"Mar 2026",i:1,m:"se_only"},
-  {id:14,n:"NSPCL Bhilai – Maroda-2 FSPV (35 MW)",dev:"NSPCL (NTPC+SAIL JV)",epc:"EPC under tendering",st:"Chhattisgarh",mw:35,loa:"2025–26 (NIT)",cod:"2026–27",i:5,m:"se_only"},
+  {id:14,n:"NSPCL Bhilai – Maroda-2 FSPV (20 MW)",dev:"NSPCL (NTPC+SAIL JV)",epc:"U-Solar Clean Energy Solutions Pvt Ltd (₹127.47 Cr; EPC + 3-yr O&M)",st:"Chhattisgarh",mw:20,loa:"Apr 2026 (NIT); Aug 2026 (L1 / award)",cod:"2026–27",i:3,m:"se_only"},
   {id:15,n:"NTPC Green Energy Great Nicobar FSPV+BESS (20 MW)",dev:"NTPC Green Energy Ltd",epc:"Under EPC tendering (EoI Aug 2025)",st:"A&N Islands",mw:20,loa:"Aug 2025 (EoI)",cod:"2027",i:3,m:"se_only"},
   {id:16,n:"DVC Tilaiya Additional FSPV (445 MW direct tender)",dev:"DVC",epc:"TBD (DVC direct tender to be floated)",st:"Jharkhand",mw:445,loa:"2025–26 (Under tendering)",cod:"2027–28",i:56,m:"se_only"}
 ];
@@ -672,7 +672,11 @@ var pipeP=[
   {id:14,n:"GRIDCO Upper Indravati FSPV (225 MW)",dev:"GRIDCO (Odisha Nodal Agency)",st:"Odisha",mw:225,nit:"Dec 2025 (RfP issued); ESIA tender Jun 2026",cod:"2027–28",stage:"RfP issued Dec 2025; ESIA consultancy tender open Jun 2026; bid submission Apr 2026",i:29,m:"se_only"},
   {id:15,n:"GRIDCO Rengali Reservoir Section-B FSPV (Captive, ~500 MW)",dev:"GRIDCO / Private Developers (PBCB)",st:"Odisha",mw:500,nit:"Dec 2025 (RfS Section-B); Pre-Bid Jun 2026",cod:"2027–28 (18 mth from LOI)",stage:"RfS (PBCB) issued Dec 2025; Section-B pre-bid meeting Jun 2026; Section-A result declared",i:63,m:"se_only"},
   {id:16,n:"GEDCOL / NHPC JV Rengali FSPV Phase-2 & Hirakud (balance 400 MW of 500 MW)",dev:"GEDCOL + NHPC JV (74:26)",st:"Odisha",mw:400,nit:"2026–27 (DPR / NIT expected)",cod:"2028–30",stage:"JV formed; 300 MW Phase-1 via BHEL under pre-construction; balance 400 MW in planning; Hirakud DPR re-submitted to SWC",i:50,m:"se_only"},
-  {id:17,n:"GRIDCO / Odisha State 1,000 MW Reservoir FSPV Programme",dev:"GRIDCO / Odisha Govt (Inter-Dept Committee)",st:"Odisha",mw:1000,nit:"2026–27 (phased tendering)",cod:"2028–30 (phased)",stage:"Inter-departmental committee (3 meetings held); GIS mapping of major reservoirs ongoing; 51 medium reservoirs feasibility assessed",i:125,m:"se_only"}
+  {id:17,n:"GRIDCO / Odisha State 1,000 MW Reservoir FSPV Programme",dev:"GRIDCO / Odisha Govt (Inter-Dept Committee)",st:"Odisha",mw:1000,nit:"2026–27 (phased tendering)",cod:"2028–30 (phased)",stage:"Inter-departmental committee (3 meetings held); GIS mapping of major reservoirs ongoing; 51 medium reservoirs feasibility assessed",i:125,m:"se_only"},
+  {id:18,n:"GMIDC Mula Dam FSPV + BESS (150 MW + 75 MW/150 MWh)",dev:"GMIDC (Godavari Marathwada Irrigation Dev. Corp.) — PPP",st:"Maharashtra",mw:150,nit:"Aug 2026 (tender issued 21 Aug; bids due 10 Sep 2026)",cod:"2028 (est.)",stage:"Tender issued Aug 2026; bid evaluation stage",i:19,m:"se_only"},
+  {id:19,n:"GMIDC FSPV + BESS EoIs — 170 MW + 115 MW + 85 MW (370 MW)",dev:"GMIDC (Godavari Marathwada Irrigation Dev. Corp.)",st:"Maharashtra",mw:370,nit:"EoIs Aug–Sep 2026 (due 21 Aug, 2 Sep, 28 Sep 2026)",cod:"2028–29 (est.)",stage:"EoI stage — developer responses under evaluation",i:47,m:"se_only"},
+  {id:20,n:"MAHAPRIET Tansa / Modak Sagar FSPV (100 MW)",dev:"MAHAPRIET (Maharashtra)",st:"Maharashtra",mw:100,nit:"Jan 2026 (RfS issued; ceiling tariff ₹4.18/kWh)",cod:"2027–28 (est.)",stage:"RfS issued; developer selection pending",i:13,m:"se_only"},
+  {id:21,n:"KIOCL Panambur FSPV (2.7 MW)",dev:"KIOCL Ltd (Ministry of Steel)",st:"Karnataka",mw:2.7,nit:"May 2026 (tender; bids due 22 Jun 2026)",cod:"2027 (est.)",stage:"Tender closed Jun 2026; award awaited",i:1,m:"se_only"}
 ];
 // ============================================================
 // GLOBAL STATE — single source of truth
