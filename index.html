@@ -383,7 +383,13 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--surface); border: 1px solid var(--b); border-radius: 6px; cursor: pointer; font-family: var(--fh); font-weight: 500; color: var(--tx); margin-bottom: 20px; transition: all 0.2s ease; }
 .back-btn:hover { background: var(--c1d); color: var(--c1); border-color: var(--c1); }
 .st-detail-hd { font-size: 20px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-.st-detail-hd span { font-size: 14px; font-weight: 500; padding: 4px 10px; background: var(--c1d); color: var(--c1); border-radius: 4px; }
+.ex-filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.ex-fbtn { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--b); background: var(--surface); color: var(--txd); font-family: var(--fh); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.ex-fbtn:hover { background: var(--surface2); color: var(--tx); border-color: var(--bb); }
+.ex-fbtn.act { background: var(--c1d); color: var(--c1); border-color: var(--c1); font-weight: 600; }
+.badge-awarded { background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.25); padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 600; white-space: nowrap; display: inline-block; }
+.badge-tender { background: rgba(217,119,6,0.12); color: #d97706; border: 1px solid rgba(217,119,6,0.25); padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 600; white-space: nowrap; display: inline-block; }
+.epc-pitch-card { margin-top: 24px; background: var(--surface); border: 1px solid var(--b); border-radius: 8px; padding: 20px; }
 
 </style>
 </head>
@@ -399,7 +405,7 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
     <h1>Floating Solar India — Transformer Oil Intelligence</h1>
     <p>Inverter Duty Transformer (IDT) &nbsp;|&nbsp; Initial Fill Volume &nbsp;|&nbsp; Confidential Internal Report</p>
   </div>
-  <div class="badge">August 2026</div>
+  <div class="badge">October 2026</div>
 
   <button class="fs-btn" id="fs-btn" onclick="toggleFS()">
     <svg id="fs-icon-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -416,28 +422,27 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
     <div class="ki">Total Projects</div>
     <div class="kv cnt" data-t="58" id="k1v">0</div>
     <div class="kl">FSPV Projects — India</div>
-    <div class="ks" id="k1s">21 Commissioned · 16 Execution · 13 Pipeline</div>
+    <div class="ks" id="k1s">21 Commissioned · 16 Execution · 21 Pipeline</div>
   </div>
   <div class="kpi card k2">
     <div class="ki">Total Capacity</div>
     <div class="kv cnt" data-t="8081" id="k2v">0</div>
     <div class="kl">MW Installed + Pipeline</div>
-    <div class="ks" id="k2s">2,703 MW future pipeline alone</div>
+    <div class="ks" id="k2s">5,451 MW future pipeline alone</div>
   </div>
   <div class="kpi card k3">
-    <div class="ki">Oil TAM — Initial Fill</div>
-    <div class="kv" id="k3v">3,870</div>
-    <div class="kl">KL — All Projects ≥50 MW</div>
-    <div class="ks" id="k3s">645 IDTs · 6 KL/IDT</div>
+    <div class="ki">Under Execution SE Demand</div>
+    <div class="kv" id="k3v">768 KL</div>
+    <div class="kl">Synthetic Ester Segment (8 Projects)</div>
+    <div class="ks" id="k3s">128 IDTs · 390 KL Awarded (4 Proj) · 378 KL Tendering</div>
   </div>
   <div class="kpi card k4">
-    <div class="ki">SE Confirmed TAM</div>
+    <div class="ki">Total Confirmed SE TAM</div>
     <div class="kv cnt" data-t="4908" id="k4v">0</div>
     <div class="kl">KL — Synthetic Ester Mandatory</div>
-    <div class="ks" id="k4s">473 IDTs · Sep'25+ Mandate</div>
+    <div class="ks" id="k4s">818 IDTs · 29 Projects (Sep'25+ Mandate)</div>
   </div>
 </div>
-
 <!-- OIL SELECTOR -->
 <div class="oil-bar se" id="oil-bar">
   <div>
@@ -456,7 +461,7 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
   </div>
   <div class="ob-rev" style="margin-left:32px;">
     <div class="ob-rev-lbl">Total Revenue Potential</div>
-    <div class="ob-rev-val" id="ob-rv">₹185.8 Cr</div>
+    <div class="ob-rev-val" id="ob-rv">₹235.6 Cr</div>
   </div>
 </div>
 <div class="mo-alert" id="mo-alert">⚠️ Mineral Oil is NOT compliant with SECI/NTPC FSPV tender specs. Volumes shown for comparative analysis only.</div>
@@ -466,33 +471,83 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
   <button class="tab-btn act" onclick="sw('ov',this)">Overview <span class="tc">Summary</span></button>
   <button class="tab-btn" onclick="sw('co',this)">Commissioned <span class="tc" id="co-tab-badge">21</span></button>
   <button class="tab-btn" onclick="sw('ex',this)">Execution & Awarded <span class="tc" id="ex-tab-badge">16</span></button>
-  <button class="tab-btn" onclick="sw('pi',this)">Future Pipeline <span class="tc" id="pi-tab-badge">13</span></button>
+  <button class="tab-btn" onclick="sw('pi',this)">Future Pipeline <span class="tc" id="pi-tab-badge">21</span></button>
   <button class="tab-btn" onclick="sw('st',this)">State-wise <span class="tc">Exec+Pipe</span></button>
   <button class="tab-btn" onclick="sw('tf',this)">Time Frame & Targets <span class="tc">Strategy</span></button>
 </div>
 
 <!-- TAB: OVERVIEW -->
 <div class="tab-panel active" id="tab-ov">
+  <!-- EXECUTIVE BRIEFING & MD QUERY ALIGNMENT BANNER -->
+  <div style="background:var(--surface); border:1px solid var(--b); border-left:4px solid var(--c1); border-radius:10px; padding:20px 24px; margin-bottom:24px; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+      <div>
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--c1);">Executive Briefing & Pipeline Alignment</div>
+        <h3 style="font-size:16px; font-weight:700; color:var(--tx); margin-top:2px;">Clarification on FSPV Projections, Winning EPCs & Non-DVC Pipeline</h3>
+      </div>
+      <span class="badge" style="background:var(--c1d); color:var(--c1); border-color:transparent; font-size:11px;">Management Review Update</span>
+    </div>
+    
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:14px;">
+      <!-- POINT 1 -->
+      <div style="background:var(--surface2); border:1px solid var(--b); border-radius:8px; padding:14px;">
+        <div style="font-size:12.5px; font-weight:700; color:var(--tx); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+          <span>🎯</span> Realistic SE Segment (No Inflation)
+        </div>
+        <div style="font-size:12px; color:var(--txd); line-height:1.5;">
+          • Previous 217 IDTs / 1,302 KL was gross capacity of all &ge;50 MW projects (including Natural Ester choice).<br>
+          • <strong>Corrected Execution SE Demand: 128 IDTs / 768 KL</strong> (8 projects strictly mandating SE).<br>
+          • <strong>Active Awarded SE Demand: 65 IDTs / 390 KL</strong> (4 projects with issued PO/contracts).
+        </div>
+      </div>
+
+      <!-- POINT 2 -->
+      <div style="background:var(--surface2); border:1px solid var(--b); border-radius:8px; padding:14px;">
+        <div style="font-size:12.5px; font-weight:700; color:var(--tx); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+          <span>⚡</span> Non-DVC Visibility (9 Projects)
+        </div>
+        <div style="font-size:12px; color:var(--txd); line-height:1.5;">
+          • <strong>9 Non-DVC projects under execution (614 MW / 81 IDTs)</strong>.<br>
+          • <strong>Coal India Chilwa Taal (20 MW):</strong> 18 KL SE awarded to <em>Northern Express</em>.<br>
+          • <strong>NSPCL Bhilai Maroda-2 (20 MW):</strong> 18 KL SE awarded to <em>U-Solar</em>.<br>
+          • Plus NHPC (150 MW), NTPC (56 MW), Omkareshwar (322 MW).
+        </div>
+      </div>
+
+      <!-- POINT 3 -->
+      <div style="background:var(--surface2); border:1px solid var(--b); border-radius:8px; padding:14px;">
+        <div style="font-size:12.5px; font-weight:700; color:var(--tx); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+          <span>🏆</span> 10 Tenders Awarded & EPC Action Plan
+        </div>
+        <div style="font-size:12px; color:var(--txd); line-height:1.5;">
+          • <strong>10 of 16 tenders awarded (982 MW / 128 IDTs)</strong>.<br>
+          • <strong>Known EPCs (Track & Lock):</strong> L&T (Konar 174 KL SE + Panchet 60 KL), Sterling & Wilson (120 KL), BHEL (78 KL).<br>
+          • <strong>New EPCs (Pitch Immediately):</strong> Oriana Power (180 KL SE), Northern Express (18 KL SE), U-Solar (18 KL SE).
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ovgrid">
     <div class="card">
-      <div class="ctitle">Initial Fill Volume by Category (KL)</div>
+      <div class="ctitle">Synthetic Ester Initial Fill Demand by Category (KL)</div>
       <div class="bc">
-        <div class="br"><div class="blbl">Commissioned</div><div class="btr"><div class="bf cy" id="ob1" style="width:0%" data-p="27.7">522 KL</div></div></div>
-        <div class="br"><div class="blbl">Under Execution</div><div class="btr"><div class="bf am" id="ob2" style="width:0%" data-p="65.5">1,302 KL</div></div></div>
-        <div class="br"><div class="blbl">Future Pipeline</div><div class="btr"><div class="bf pu" id="ob3" style="width:0%" data-p="99">2,046 KL</div></div></div>
+        <div class="br"><div class="blbl">Commissioned</div><div class="btr"><div class="bf cy" id="ob1" style="width:5%">0 KL (Choice: 690 KL)</div></div></div>
+        <div class="br"><div class="blbl tc3" style="font-weight:600">Under Execution (SE)</div><div class="btr"><div class="bf se" id="ob2" style="width:25%">768 KL (Awarded: 390 KL · 65 IDTs)</div></div></div>
+        <div class="br"><div class="blbl tc4">Future Pipeline (SE)</div><div class="btr"><div class="bf pu" id="ob3" style="width:85%">4,140 KL (690 IDTs · 21 Proj)</div></div></div>
         <div style="height:1px;background:var(--b);margin:8px 0"></div>
-        <div class="br"><div class="blbl" style="font-weight:600">Grand Total</div><div class="btr"><div class="bf gr" id="ob4" style="width:100%">3,870 KL</div></div></div>
+        <div class="br"><div class="blbl" style="font-weight:700">Confirmed SE TAM</div><div class="btr"><div class="bf gr" id="ob4" style="width:100%">4,908 KL (818 IDTs · 29 Proj)</div></div></div>
       </div>
     </div>
     <div class="card">
       <div class="ctitle">SE Mandate Coverage by MW</div>
       <div class="bc">
-        <div class="br"><div class="blbl tc3">SE Mandatory Only</div><div class="btr"><div class="bf se" style="width:69.4%" id="se-mandate-bar">3,711 MW</div></div></div>
-        <div class="br"><div class="blbl tc2">NE or SE (Choice)</div><div class="btr"><div class="bf ne" style="width:30.6%" id="se-choice-bar">1,637 MW</div></div></div>
+        <div class="br"><div class="blbl tc3">SE Mandatory Only</div><div class="btr"><div class="bf se" style="width:79.7%" id="se-mandate-bar">6,444 MW</div></div></div>
+        <div class="br"><div class="blbl tc2">NE or SE (Choice)</div><div class="btr"><div class="bf ne" style="width:20.3%" id="se-choice-bar">1,637 MW</div></div></div>
       </div>
       <div style="display:flex;gap:12px;margin-top:24px;">
         <div style="flex:1; padding:16px; background:var(--c3d); border-radius:8px;">
-          <div style="font-size:24px; font-weight:700; color:var(--c3);" id="se-mandate-pct">69.4%</div>
+          <div style="font-size:24px; font-weight:700; color:var(--c3);" id="se-mandate-pct">79.7%</div>
           <div style="font-size:12px; color:var(--txd); margin-top:4px;">MW with SE Mandate</div>
         </div>
         <div style="flex:1; padding:16px; background:var(--c1d); border-radius:8px;">
@@ -503,7 +558,6 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
     </div>
   </div>
 </div>
-
 <!-- TAB: COMMISSIONED -->
 <div class="tab-panel" id="tab-co">
   <div class="sec-hd"><h2>Commissioned (<span id="co-title-proj-count">21</span> Projects | <span id="co-title-cap">825 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
@@ -522,17 +576,140 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
 
 <!-- TAB: EXECUTION -->
 <div class="tab-panel" id="tab-ex">
-  <div class="sec-hd"><h2>Under Execution & Awarded (<span id="ex-title-proj-count">16</span> Projects | <span id="ex-title-cap">1,820 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
-  <div class="gbox">9 of 16 projects (Sep 2025+ tenders) mandate Synthetic Ester ONLY. SOTL target: all 16 for SE supply.</div>
+  <div class="sec-hd"><h2>Under Execution & Awarded (<span id="ex-title-proj-count">16</span> Projects | <span id="ex-title-cap">1,805 MW</span>)</h2><div class="sync-tag">Synced with Global Oil Selector</div></div>
+  <div class="gbox">Under Execution SE Segment: 8 of 16 projects (993 MW / 128 IDTs / 768 KL) mandate Synthetic Ester ONLY (4 awarded / active: 390 KL · 65 IDTs, 4 in tendering: 378 KL · 63 IDTs). Pre-Sep 2025 projects (8 projects / 812 MW / 636 KL) allow bidder's choice (NE or SE) and are excluded from the SE supply projection.</div>
   <div class="sbar">
-    <div class="si"><div class="sv tc2" id="ex-proj-count">16</div><div class="sl">Projects</div></div>
-    <div class="si"><div class="sv tc2" id="ex-cap">1,820 MW</div><div class="sl">Total Capacity</div></div>
-    <div class="si"><div class="sv tc3" id="ex-se">780 KL</div><div class="sl">SE Mandatory Vol</div></div>
-    <div class="si"><div class="sv tc2" id="ex-vol">1,302 KL</div><div class="sl">Vol ≥50 MW</div></div>
-    <div class="si"><div class="sv tc3" id="ex-rev">₹62.5 Cr</div><div class="sl">Revenue</div></div>
+    <div class="si"><div class="sv tc2" id="ex-proj-count">16</div><div class="sl">Total Projects</div></div>
+    <div class="si"><div class="sv tc1" id="ex-awarded-stat">10 Proj · 982 MW</div><div class="sl">Tenders Awarded</div></div>
+    <div class="si"><div class="sv tc3" id="ex-se-stat">8 Proj · 768 KL</div><div class="sl">Confirmed SE Mandate</div></div>
+    <div class="si"><div class="sv tc3" id="ex-act-se-stat" style="font-weight:700">390 KL · 65 IDTs</div><div class="sl">Active Awarded SE Demand</div></div>
+    <div class="si"><div class="sv tc3" id="ex-rev">₹18.7 Cr</div><div class="sl">Active Awarded SE Rev</div></div>
   </div>
+
+  <div class="ex-filters">
+    <button class="ex-fbtn act" id="ex-btn-all" onclick="setExFilter('all',this)">All Execution (16)</button>
+    <button class="ex-fbtn" id="ex-btn-awarded" onclick="setExFilter('awarded',this)">🏆 Awarded Tenders (10)</button>
+    <button class="ex-fbtn" id="ex-btn-se" onclick="setExFilter('se_only',this)">🟢 SE Mandate Only (8)</button>
+    <button class="ex-fbtn" id="ex-btn-awarded-se" onclick="setExFilter('awarded_se',this)">🎯 Active Awarded SE (4)</button>
+    <button class="ex-fbtn" id="ex-btn-nondvc" onclick="setExFilter('nondvc',this)">⚡ Non-DVC Projects (9)</button>
+    <button class="ex-fbtn" id="ex-btn-dvc" onclick="setExFilter('dvc',this)">🏢 DVC Projects (7)</button>
+    <button class="ex-fbtn" id="ex-btn-tendering" onclick="setExFilter('tendering',this)">⏳ In Tendering (6)</button>
+  </div>
+
   <div class="tbl-wrap">
-    <div class="tbl-sc"><table><thead><tr><th>Project Name</th><th>Developer / Owner</th><th>EPC Contractor</th><th>State</th><th>MW</th><th>LOA Date</th><th>Target COD</th><th>IDTs</th><th id="ex-vh">Vol (KL)</th><th>Mandate</th><th>Incl.</th></tr></thead><tbody id="ex-tb"></tbody></table></div>
+    <div class="tbl-sc"><table><thead><tr><th>#</th><th>Project Name</th><th>Developer / Owner</th><th>Tender Status</th><th>EPC Contractor / Winner</th><th>State</th><th>MW</th><th>LOA Date</th><th>Target COD</th><th>IDTs</th><th id="ex-vh">Vol (KL)</th><th>Mandate</th><th>Incl.</th></tr></thead><tbody id="ex-tb"></tbody></table></div>
+  </div>
+
+  <!-- EPC CONTRACTOR INTELLIGENCE & SOTL PITCH TRACKER -->
+  <div class="epc-pitch-card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <div>
+        <h3 style="font-size:16px;font-weight:700;color:var(--tx);margin-bottom:4px;">⚡ EPC Contractor Intelligence & Pitch Tracker (Awarded Tenders)</h3>
+        <p style="font-size:12px;color:var(--txd);">Visibility into winning EPC companies, tender award status, and strategic sales outreach for SOTL commercial team.</p>
+      </div>
+      <span class="st" style="background:var(--c3d);color:var(--c3);font-size:11px;">10 Tenders Awarded</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <!-- KNOWN ACCOUNTS -->
+      <div style="background:var(--surface2);border:1px solid var(--b);border-radius:8px;padding:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--c1);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <span>🤝 Established EPC Accounts (Direct Relationships)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="padding:10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c1);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;">
+              <span>L&T Construction (Solar / PT&D)</span>
+              <span class="tc3">234 KL Oil Scope</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);margin-top:4px;line-height:1.5;">
+              • <strong>DVC Konar (228 MW):</strong> 29 IDTs · <strong>174 KL SE ONLY</strong> (L1 at ₹1,126 Cr; LOA process)<br>
+              • <strong>DVC Panchet (75 MW):</strong> 10 IDTs · 60 KL (NE/SE Choice; LOA 2023–24)
+            </div>
+            <div style="margin-top:6px;font-size:11px;color:var(--c1);font-weight:600;">
+              🎯 Action: Key account — follow up with L&T Solar team to lock in 174 KL SE for Konar.
+            </div>
+          </div>
+
+          <div style="padding:10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c1);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;">
+              <span>Sterling & Wilson Renewable Energy Ltd</span>
+              <span class="tc2">120 KL Oil Scope</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);margin-top:4px;line-height:1.5;">
+              • <strong>DVC/GVREL Tilaiya (155 MW):</strong> 20 IDTs · 120 KL (NE/SE Choice; Jan 2024 PPA)
+            </div>
+            <div style="margin-top:6px;font-size:11px;color:var(--c2);font-weight:600;">
+              🎯 Action: Known EPC — proactively pitch Savita Synthetic Ester over Natural Ester.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW WINNERS TO PITCH -->
+      <div style="background:var(--surface2);border:1px solid var(--b);border-radius:8px;padding:16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--c3);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <span>🚀 New EPC Winners to Pitch Immediately (Pipeline Expansion)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="padding:8px 10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c3);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;">
+              <span>TrueRE Oriana Power Ltd</span>
+              <span class="tc3" style="font-weight:700">180 KL · SE ONLY</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);line-height:1.4;">
+              <strong>DVC Maithon (234 MW):</strong> 30 IDTs · Awarded Mar 2026 PO (₹1,180.53 Cr)<br>
+              <span style="color:#059669;font-weight:600">🎯 Top Priority Pitch: Connect with Oriana Power procurement & engineering heads.</span>
+            </div>
+          </div>
+
+          <div style="padding:8px 10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c3);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;">
+              <span>Northern Express Infradevelopers Pvt Ltd</span>
+              <span class="tc3" style="font-weight:700">18 KL · SE ONLY</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);line-height:1.4;">
+              <strong>Coal India Chilwa Taal (20 MW):</strong> 3 IDTs · Contract awarded 25 May 2026 (~₹115 Cr)<br>
+              <span style="color:#059669;font-weight:600">🎯 Action: Pitch Savita SE to Northern Express management & transformer OEM.</span>
+            </div>
+          </div>
+
+          <div style="padding:8px 10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c3);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;">
+              <span>U-Solar Clean Energy Solutions Pvt Ltd</span>
+              <span class="tc3" style="font-weight:700">18 KL · SE ONLY</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);line-height:1.4;">
+              <strong>NSPCL Bhilai – Maroda-2 (20 MW):</strong> 3 IDTs · Awarded Aug 2026 (₹127.47 Cr)<br>
+              <span style="color:#059669;font-weight:600">🎯 Action: Pitch Savita SE to U-Solar Bangalore/Delhi headquarters.</span>
+            </div>
+          </div>
+
+          <div style="padding:8px 10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c2);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;">
+              <span>Apollo Green Energy Ltd</span>
+              <span class="tc2">42 KL · NE/SE Choice</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);line-height:1.4;">
+              <strong>NHPC West Kallada (50 MW):</strong> 7 IDTs · Foundation stone Mar 2026; construction active.<br>
+              <span style="color:var(--c2);font-weight:600">🎯 Action: Pitch Savita SE fluid directly to Apollo Green project director.</span>
+            </div>
+          </div>
+
+          <div style="padding:8px 10px;border-radius:6px;background:var(--surface);border-left:3px solid var(--c2);">
+            <div style="display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;">
+              <span>BHEL & Gensol Engineering</span>
+              <span class="tc2">90 KL Scope</span>
+            </div>
+            <div style="font-size:11px;color:var(--txd);line-height:1.4;">
+              • <strong>BHEL:</strong> NHPC Rengali Ph-1 (100 MW · 78 KL · Pre-construction)<br>
+              • <strong>Gensol:</strong> DVC Mejia TPS (14 MW · 12 KL)<br>
+              <span style="color:var(--c2);font-weight:600">🎯 Action: Engage BHEL Bhopal/Jhansi transformer works & Gensol procurement.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -575,14 +752,23 @@ tbody td { padding: 14px 20px; vertical-align: middle; color: var(--tx); }
       <div class="mti"><div class="mdot" style="background:var(--c3)"></div><div class="mc"><h4>Sep 2025+ — Synthetic Ester ONLY</h4><p>Revised specs mandate SE exclusively. All future tenders 100% SE.</p></div></div>
     </div>
     <div class="card">
-      <div class="ctitle">Action Matrix — SE Oil Orders</div>
-      <div style="background:var(--c4d); padding:16px; border-radius:8px; border:1px solid rgba(124,58,237,0.2); margin-bottom:16px;">
-        <h4 style="color:var(--c4); font-size:14px; margin-bottom:8px;">Urgent — Order 2026</h4>
-        <p style="font-size:13px; color:var(--txd); line-height:1.6;">NTPC N.Karanpura 56 MW<br>NHPC W.Kallada 50 MW<br>Omkareshwar Ph-2 322 MW</p>
+      <div class="ctitle">Action Matrix — Awarded SE Orders (Immediate Focus)</div>
+      <div style="background:var(--c3d); padding:16px; border-radius:8px; border:1px solid rgba(5,150,105,0.2); margin-bottom:16px;">
+        <h4 style="color:var(--c3); font-size:14px; margin-bottom:8px;">🎯 Active Awarded SE Orders (390 KL · 65 IDTs)</h4>
+        <p style="font-size:13px; color:var(--txd); line-height:1.6;">
+          <strong>DVC Maithon 234 MW (180 KL SE)</strong> — Oriana Power (PO Mar 2026)<br>
+          <strong>DVC Konar 228 MW (174 KL SE)</strong> — L&T Construction (L1 Oct 2025)<br>
+          <strong>Coal India Chilwa Taal 20 MW (18 KL SE)</strong> — Northern Express (May 2026)<br>
+          <strong>NSPCL Bhilai Maroda-2 20 MW (18 KL SE)</strong> — U-Solar (Aug 2026)
+        </p>
       </div>
       <div style="background:var(--c2d); padding:16px; border-radius:8px; border:1px solid rgba(217,119,6,0.2);">
-        <h4 style="color:var(--c2); font-size:14px; margin-bottom:8px;">Priority — Order 2027</h4>
-        <p style="font-size:13px; color:var(--txd); line-height:1.6;"><strong>DVC Maithon 234 MW (PO Mar 2026)</strong><br>DVC Konar 228 MW<br>DVC Tilaiya Add. 445 MW</p>
+        <h4 style="color:var(--c2); font-size:14px; margin-bottom:8px;">⏳ Tendering & Choice Pipeline (Track at PSU Level)</h4>
+        <p style="font-size:13px; color:var(--txd); line-height:1.6;">
+          DVC Tilaiya Additional 445 MW (336 KL SE) — DVC tender to be floated<br>
+          Omkareshwar Ph-2 322 MW (246 KL) — MPPTCL award in progress<br>
+          APGCL Sonbeel 20 MW (18 KL SE) — EPC tender in process
+        </p>
       </div>
     </div>
   </div>
@@ -717,12 +903,76 @@ function onPx(){
 }
 
 // ============================================================
+// AWARD STATUS & EXECUTION FILTER HELPERS
+// ============================================================
+function isAwarded(p){
+  var epc = (p.epc || '').toLowerCase();
+  if (epc.indexOf('tbd')>=0 || epc.indexOf('under award')>=0 || epc.indexOf('tendering')>=0 || epc.indexOf('under process')>=0 || epc.indexOf('to be floated')>=0) {
+    return false;
+  }
+  return true;
+}
+
+var exFilter = 'all';
+function setExFilter(f, btn){
+  exFilter = f;
+  document.querySelectorAll('.ex-fbtn').forEach(function(b){b.classList.remove('act');});
+  if(btn) btn.classList.add('act');
+  rTbl('ex-tb', getFilteredExec(), OIL, true, false);
+}
+
+function getFilteredExec(){
+  return execP.filter(function(p){
+    if(exFilter === 'awarded') return isAwarded(p);
+    if(exFilter === 'se_only') return p.m === 'se_only';
+    if(exFilter === 'awarded_se') return isAwarded(p) && p.m === 'se_only';
+    if(exFilter === 'nondvc') return !p.dev.includes('DVC') && !p.dev.includes('GVREL');
+    if(exFilter === 'dvc') return p.dev.includes('DVC') || p.dev.includes('GVREL');
+    if(exFilter === 'tendering') return !isAwarded(p);
+    return true;
+  });
+}
+
+// ============================================================
 // RENDER ALL — rebuilds every visible element
 // ============================================================
 function renderAll(){
   var lbl=OL[OIL], oc=OIL;
-  var ck=totKL(commP), ek=totKL(execP), pk=totKL(pipeP), tot=ck+ek+pk;
-  var esek=inc(execP).filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+vol(p.i);},0);
+  var isSE = (OIL === 'se');
+  var isNE = (OIL === 'ne');
+
+  // Strict segment calculation:
+  // - Commissioned: in SE mode, 0 KL mandate (all 21 projects were pre-Sep'25 NE/SE choice)
+  var ck = isSE ? 0 : commP.reduce(function(s,p){return s+vol(p.i);},0);
+  var ckAll = commP.reduce(function(s,p){return s+vol(p.i);},0);
+
+  // - Execution:
+  //   In SE mode: strictly calculate SE segment (m === 'se_only') = 768 KL (128 IDTs across 8 projects)
+  //   Awarded SE: 390 KL (65 IDTs across 4 projects)
+  //   In-Tendering SE: 378 KL (63 IDTs across 4 projects)
+  //   In NE mode: calculate NE-eligible segment (m === 'ne_se') = 636 KL (106 IDTs across 8 projects)
+  //   In MO mode: all 16 execution projects = 1,404 KL (234 IDTs)
+  var ek_se = execP.filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+vol(p.i);},0);
+  var ek_se_awarded = execP.filter(function(p){return p.m==='se_only' && isAwarded(p);}).reduce(function(s,p){return s+vol(p.i);},0);
+  var ek_ne = execP.filter(function(p){return p.m==='ne_se';}).reduce(function(s,p){return s+vol(p.i);},0);
+  
+  var ek = isSE ? ek_se : (isNE ? ek_ne : execP.reduce(function(s,p){return s+vol(p.i);},0));
+  
+  // - Pipeline: 100% SE only
+  var pk = isNE ? 0 : pipeP.reduce(function(s,p){return s+vol(p.i);},0);
+  
+  var tot = ck + ek + pk;
+
+  // Granular counts for execution
+  var execAwarded = execP.filter(isAwarded);
+  var execAwardedCap = execAwarded.reduce(function(s,p){return s+p.mw;},0);
+  var execSE = execP.filter(function(p){return p.m==='se_only';});
+  var execSECap = execSE.reduce(function(s,p){return s+p.mw;},0);
+  var execSEVol = execSE.reduce(function(s,p){return s+vol(p.i);},0);
+  var execActSE = execP.filter(function(p){return p.m==='se_only' && isAwarded(p);});
+  var execActSEVol = execActSE.reduce(function(s,p){return s+vol(p.i);},0);
+  var execActSEIDTs = execActSE.reduce(function(s,p){return s+p.i;},0);
+  var execActSERev = rc(execActSEVol);
 
   // Compute metrics dynamically
   var commCount = commP.length;
@@ -735,28 +985,22 @@ function renderAll(){
   var pipeCap = pipeP.reduce(function(sum,p){return sum+p.mw;},0);
   var totalCap = commCap + execCap + pipeCap;
 
-  var commIDTs = commP.reduce(function(sum,p){return sum+p.i;},0);
-  var execIDTs = execP.reduce(function(sum,p){return sum+p.i;},0);
-  var pipeIDTs = pipeP.reduce(function(sum,p){return sum+p.i;},0);
-  var totalIDTsVal = commIDTs + execIDTs + pipeIDTs;
-
   var commIDTs50 = inc(commP).reduce(function(sum,p){return sum+p.i;},0);
   var execIDTs50 = inc(execP).reduce(function(sum,p){return sum+p.i;},0);
   var pipeIDTs50 = inc(pipeP).reduce(function(sum,p){return sum+p.i;},0);
-  var totalIDTs50 = commIDTs50 + execIDTs50 + pipeIDTs50;
 
   // SE Mandate Coverage
-  var seMandateCap = execP.filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+p.mw;},0) + pipeCap;
+  var seMandateCap = execSECap + pipeCap;
   var seMandatePct = (seMandateCap / totalCap * 100).toFixed(1);
   var seChoiceCap = totalCap - seMandateCap;
   var seChoicePct = (seChoiceCap / totalCap * 100).toFixed(1);
 
-  // — Dynamic Tab Badges
+  // Dynamic Tab Badges
   tx('co-tab-badge', commCount);
   tx('ex-tab-badge', execCount);
   tx('pi-tab-badge', pipeCount);
 
-  // — Dynamic tab header stats
+  // Dynamic tab header stats
   tx('co-title-proj-count', commCount);
   tx('co-title-cap', Math.round(commCap).toLocaleString() + ' MW');
   tx('ex-title-proj-count', execCount);
@@ -764,94 +1008,101 @@ function renderAll(){
   tx('pi-title-proj-count', pipeCount);
   tx('pi-title-cap', Math.round(pipeCap).toLocaleString() + ' MW');
 
-  // — Dynamic sbar items
+  // Dynamic sbar items in Execution
+  tx('ex-proj-count', execCount);
+  tx('ex-awarded-stat', execAwarded.length + ' Proj · ' + Math.round(execAwardedCap) + ' MW');
+  tx('ex-se-stat', execSE.length + ' Proj · ' + execSEVol.toLocaleString() + ' KL');
+  tx('ex-act-se-stat', execActSEVol.toLocaleString() + ' KL · ' + execActSEIDTs + ' IDTs');
+  tx('ex-rev', '₹' + execActSERev + ' Cr');
+
+  // Commissioned & Pipeline sbars
   tx('co-proj-count', commCount);
   tx('co-cap', Math.round(commCap).toLocaleString() + ' MW');
-  tx('co-idts', commIDTs);
-  tx('ex-proj-count', execCount);
-  tx('ex-cap', Math.round(execCap).toLocaleString() + ' MW');
+  tx('co-idts', commP.reduce(function(s,p){return s+p.i;},0));
+  tx('co-vol', ckAll + ' KL');
+  tx('co-rev', '₹' + rc(ckAll) + ' Cr');
+
   tx('pi-proj-count', pipeCount);
   tx('pi-cap', Math.round(pipeCap).toLocaleString() + ' MW');
+  tx('pi-vol', pk + ' KL');
+  tx('pi-rev', '₹' + rc(pk) + ' Cr');
 
-  // — Dynamic SE Mandate Coverage card
+  // SE Mandate Coverage card
   var smBar = g('se-mandate-bar');
-  if(smBar) {
-    smBar.style.width = seMandatePct + '%';
-    smBar.textContent = Math.round(seMandateCap).toLocaleString() + ' MW';
-  }
+  if(smBar) { smBar.style.width = seMandatePct + '%'; smBar.textContent = Math.round(seMandateCap).toLocaleString() + ' MW'; }
   var scBar = g('se-choice-bar');
-  if(scBar) {
-    scBar.style.width = seChoicePct + '%';
-    scBar.textContent = Math.round(seChoiceCap).toLocaleString() + ' MW';
-  }
+  if(scBar) { scBar.style.width = seChoicePct + '%'; scBar.textContent = Math.round(seChoiceCap).toLocaleString() + ' MW'; }
   tx('se-mandate-pct', seMandatePct + '%');
 
-  // — Dynamic KPI updates
+  // Dynamic KPI updates
   tx('k1v', totalProjCount);
-  tx('k1s', commCount + ' Commissioned \u00B7 ' + execCount + ' Execution \u00B7 ' + pipeCount + ' Pipeline');
+  tx('k1s', commCount + ' Commissioned · ' + execCount + ' Execution · ' + pipeCount + ' Pipeline');
   tx('k2v', Math.round(totalCap).toLocaleString());
   tx('k2s', Math.round(pipeCap).toLocaleString() + ' MW future pipeline alone');
-  
-  // — Global revenue display
-  tx('ob-rv','\u20B9'+rc(tot)+' Cr');
 
-  // — KPI 3 (TAM)
-  tx('k3v',tot.toLocaleString());
-  tx('k3s', totalIDTs50 + ' IDTs \u00B7 6 KL/IDT \u00B7 '+lbl+' \u00B7 Initial Fill');
+  // Global revenue display (Calculated on realistic segment volume!)
+  tx('ob-rv','₹'+rc(tot)+' Cr');
 
-  // — KPI 4 (Confirmed SE TAM)
-  var confirmedSEIDTs = execP.filter(function(p){return p.m==='se_only';}).reduce(function(s,p){return s+p.i;},0) + pipeIDTs;
+  // KPI 3 (Under Execution SE Demand in SE mode)
+  if(isSE){
+    tx('k3v', ek_se.toLocaleString() + ' KL');
+    tx('k3s', '128 IDTs · ' + ek_se_awarded + ' KL Awarded (4 Proj) · 378 KL Tendering');
+  } else {
+    tx('k3v', ek.toLocaleString() + ' KL');
+    tx('k3s', (isNE ? '106 IDTs · NE-Eligible (8 Projects)' : '234 IDTs · All Execution (16 Projects)'));
+  }
+
+  // KPI 4 (Confirmed SE TAM)
+  var confirmedSEIDTs = execSE.reduce(function(s,p){return s+p.i;},0) + pipeP.reduce(function(s,p){return s+p.i;},0);
   tx('k4v', (confirmedSEIDTs * KL).toLocaleString());
-  tx('k4s', confirmedSEIDTs + ' IDTs \u00B7 Sep\'25+ Mandate');
+  tx('k4s', confirmedSEIDTs + ' IDTs · Sep\'25+ Mandate');
 
-  // — Table column headers
-  ['co-vh','ex-vh','pi-vh'].forEach(function(id){
-    tx(id,'Vol \u2014 '+lbl+' (KL)');
-  });
+  // Table column headers
+  ['co-vh','ex-vh','pi-vh'].forEach(function(id){ tx(id,'Vol — '+lbl+' (KL)'); });
 
-  // — Table footer text
-  tx('co-ft','Oil: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial Fill Only \u00B7 Pre-Sep 2025 Mandate');
-  tx('ex-ft','Oil: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial Fill Only \u00B7 Sep\u201925+ SE Mandatory: ' + execP.filter(function(p){return p.m==='se_only';}).length + ' Projects');
-  tx('pi-ft','Oil: '+lbl+' \u00B7 All ' + pipeCount + ' Projects Sep\u201925+ Mandate \u00B7 Initial Fill Only');
+  // Footers
+  tx('co-ft','Oil: '+lbl+' · 6 KL/IDT · Pre-Sep 2025 Mandate (NE or SE Choice)');
+  tx('ex-ft','Oil: '+lbl+' · 6 KL/IDT · SE Mandatory: ' + execSE.length + ' Projects (' + execSEVol + ' KL) | Active Awarded SE: ' + execActSE.length + ' Projects (' + execActSEVol + ' KL)');
+  tx('pi-ft','Oil: '+lbl+' · All ' + pipeCount + ' Projects Sep’25+ Mandate · Initial Fill Only');
 
-  // — Chart titles
-  tx('co-ct','Initial Fill Volume ('+lbl+') \u2014 Commissioned \u226550 MW');
-  tx('ex-ct','Initial Fill Volume ('+lbl+') \u2014 Under Execution \u226550 MW');
-  tx('pi-ct','Initial Fill Volume ('+lbl+') \u2014 Future Pipeline \u226550 MW');
+  // Overview volume boxes
+  var ob1El = g('ob1'), ob2El = g('ob2'), ob3El = g('ob3'), ob4El = g('ob4');
+  if(isSE){
+    var seIDTs = execSE.reduce(function(s,p){return s+p.i;},0) + pipeP.reduce(function(s,p){return s+p.i;},0);
+    if(ob1El){ ob1El.style.width = '6%'; ob1El.textContent = '0 KL (Choice: ' + ckAll + ' KL)'; }
+    if(ob2El){ ob2El.style.width = ((ek_se/pk)*100*0.75+10)+'%'; ob2El.textContent = ek_se + ' KL (Awarded: ' + ek_se_awarded + ' KL · ' + execActSEIDTs + ' IDTs)'; }
+    if(ob3El){ ob3El.style.width = '85%'; ob3El.textContent = pk + ' KL · ' + pipeP.reduce(function(s,p){return s+p.i;},0) + ' IDTs (21 Proj)'; }
+    if(ob4El){ ob4El.style.width = '100%'; ob4El.textContent = tot + ' KL · ' + seIDTs + ' IDTs (29 Proj)'; }
+  } else {
+    var mx=Math.max(ck,ek,pk,1);
+    if(ob1El){ ob1El.style.width = (ck/mx*100)+'%'; ob1El.textContent = ck + ' KL'; }
+    if(ob2El){ ob2El.style.width = (ek/mx*100)+'%'; ob2El.textContent = ek + ' KL'; }
+    if(ob3El){ ob3El.style.width = (pk/mx*100)+'%'; ob3El.textContent = pk + ' KL'; }
+    if(ob4El){ ob4El.style.width = '100%'; ob4El.textContent = tot + ' KL'; }
+  }
 
-  // — Stats bars
-  tx('co-vol',ck+' KL'); tx('co-rev','\u20B9'+rc(ck)+' Cr');
-  tx('ex-vol',ek+' KL'); tx('ex-se',esek+' KL'); tx('ex-rev','\u20B9'+rc(ek)+' Cr');
-  tx('pi-vol',pk+' KL'); tx('pi-rev','\u20B9'+rc(pk)+' Cr');
-
-  // — Overview volume boxes
-  tx('ov-c',ck+' KL'); tx('ov-e',ek+' KL'); tx('ov-p',pk+' KL'); tx('ov-t',tot+' KL');
-  tx('ov-note','Oil Type: '+lbl+' \u00B7 6 KL/IDT \u00B7 Initial fill only \u2014 no top-up included in any calculation');
-  tx('ob1',ck+' KL \u00B7 ' + commIDTs50 + ' IDTs'); tx('ob2',ek+' KL \u00B7 ' + execIDTs50 + ' IDTs');
-  tx('ob3',pk+' KL \u00B7 ' + pipeIDTs50 + ' IDTs'); tx('ob4',tot+' KL \u00B7 ' + totalIDTs50 + ' IDTs');
-
-  // — Revenue bars (overview)
-  var cr=parseFloat(rc(ck)),er=parseFloat(rc(ek)),pr=parseFloat(rc(pk)),mx=Math.max(cr,er,pr);
+  // Revenue bars (overview)
+  var cr=parseFloat(rc(ck)),er=parseFloat(rc(ek)),pr=parseFloat(rc(pk)),mxR=Math.max(cr,er,pr,1);
   var r1=g('rb1'),r2=g('rb2'),r3=g('rb3');
-  if(r1){r1.style.width=(cr/mx*100)+'%';r1.textContent='\u20B9'+cr+' Cr';}
-  if(r2){r2.style.width=(er/mx*100)+'%';r2.textContent='\u20B9'+er+' Cr';}
-  if(r3){r3.style.width='100%';r3.textContent='\u20B9'+pr+' Cr';}
+  if(r1){r1.style.width=(cr/mxR*100)+'%';r1.textContent='₹'+cr+' Cr';}
+  if(r2){r2.style.width=(er/mxR*100)+'%';r2.textContent='₹'+er+' Cr';}
+  if(r3){r3.style.width=(pr/mxR*100)+'%';r3.textContent='₹'+pr+' Cr';}
 
-  // — Timeframe strat card
+  // Timeframe strat card
   var tfr=g('tf-rev');
-  if(tfr)tfr.textContent='\u20B9'+rc(ek+pk)+' Cr';
+  if(tfr)tfr.textContent='₹'+rc(ek+pk)+' Cr';
 
-  // — Tables
+  // Tables
   rTbl('co-tb',commP,oc,false,false);
-  rTbl('ex-tb',execP,oc,true,false);
+  rTbl('ex-tb',getFilteredExec(),oc,true,false);
   rTbl('pi-tb',pipeP,'se',false,true);
 
-  // — Bar charts
+  // Bar charts
   rChart('co-bc',inc(commP),oc);
-  rChart('ex-bc',inc(execP),oc);
+  rChart('ex-bc',isSE ? inc(execP).filter(function(p){return p.m==='se_only';}) : inc(execP), oc);
   rChart('pi-bc',inc(pipeP),'se');
 
-  // — Target accounts (update revenue figures)
+  // Target accounts
   var sc=g('state-cards');
   if(sc&&sc.innerHTML.length>10) rStateWise();
 
@@ -865,23 +1116,34 @@ function renderAll(){
 function rTbl(id,arr,oc,hasLoa,isPipe){
   var el=g(id); if(!el)return;
   var rows=arr.map(function(p){
-    var inc=p.mw>=50, v=vol(p.i);
-    var vcls='vc '+(inc?(isPipe?'se':oc):'xc');
-    var vtxt=inc?v+' KL':'\u2014';
+    var v=vol(p.i);
+    var vcls='vc '+(isPipe?'se':oc);
+    var vtxt=v+' KL';
     var row='<td style="color:var(--txm);font-family:var(--fm);font-size:10px">'+p.id+'</td>';
-    row+='<td><div class="pn">'+p.n+'</div>'+(inc?'':'<div class="en">\u2298 &lt;50 MW \u2014 excluded</div>')+'</td>';
+    row+='<td><div class="pn">'+p.n+'</div></td>';
     row+='<td><div class="dc">'+p.dev+'</div></td>';
-    if(!isPipe)row+='<td><div class="ec">'+p.epc+'</div></td>';
+    if(hasLoa){
+      var aw = isAwarded(p);
+      row+='<td>'+(aw?'<span class="badge-awarded">✓ AWARDED</span>':'<span class="badge-tender">⏳ TENDERING</span>')+'</td>';
+    }
+    if(!isPipe)row+='<td><div class="ec" style="'+(hasLoa&&isAwarded(p)?'font-weight:600;color:var(--tx)':'')+'">'+p.epc+'</div></td>';
     row+='<td><span class="st">'+p.st+'</span></td>';
-    row+='<td class="mwc" style="color:'+(p.mw>=50?'var(--c1)':'var(--txm)')+'">'+p.mw+'</td>';
+    row+='<td class="mwc" style="color:var(--c1)">'+p.mw+'</td>';
     if(hasLoa)row+='<td>'+cb(p.loa,'a')+'</td>';
     row+='<td>'+cb(p.cod,hasLoa?'f':'')+'</td>';
     if(isPipe)row+='<td><div class="ec" style="font-size:10.5px;max-width:115px">'+p.stage+'</div></td>';
     row+='<td class="idtc">'+p.i+'</td>';
-    row+='<td class="'+vcls+'">'+vtxt+'</td>';
+    
+    // Transparent Volume labelling:
+    if(hasLoa && OIL==='se' && p.m==='ne_se'){
+      row+='<td class="vc ne" style="font-size:11px;color:var(--c2)">'+v+' KL (Choice)</td>';
+    } else {
+      row+='<td class="'+vcls+'">'+vtxt+'</td>';
+    }
+    
     row+=isPipe?'<td><span class="mt mt-s">SE ONLY</span></td>':'<td>'+mt(p.m)+'</td>';
-    row+='<td style="text-align:center;font-family:var(--fm)">'+(inc?'<span style="color:var(--c3)">\u2713</span>':'<span style="color:var(--red);opacity:.35">\u2717</span>')+'</td>';
-    return '<tr class="'+(inc?'':'xr')+'">'+row+'</tr>';
+    row+='<td style="text-align:center;font-family:var(--fm)"><span style="color:var(--c3)">✓</span></td>';
+    return '<tr>'+row+'</tr>';
   });
   el.innerHTML=rows.join('');
 }
@@ -981,6 +1243,8 @@ function rTargets(){
     else if (s.indexOf('sterling')>=0 || s.indexOf('s&w')>=0 || s.indexOf('sterling and wilson')>=0) norm = 'Sterling & Wilson RE';
     else if (s.indexOf('oriana')>=0 || s.indexOf('truere')>=0) norm = 'Oriana Power / TrueRE';
     else if (s.indexOf('apollo')>=0) norm = 'Apollo Green Energy';
+    else if (s.indexOf('northern express')>=0) norm = 'Northern Express Infradevelopers';
+    else if (s.indexOf('u-solar')>=0 || s.indexOf('usolar')>=0) norm = 'U-Solar Clean Energy';
     else if (s.indexOf('renew')>=0) norm = 'ReNew Power EPC';
     else if (s.indexOf('gensol')>=0) norm = 'Gensol Engineering';
     else if (s.indexOf('vikram')>=0) norm = 'Vikram Solar';
